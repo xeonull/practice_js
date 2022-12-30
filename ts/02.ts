@@ -34,7 +34,6 @@ const strictResult = concat([1, 2] as const, ["3", "4"] as const);
 const relaxedResult = concat([1, 2], ["3", "4"]);
 // type -> Array<string | number>
 
-
 /*         Индексные, связанные (mapped) и условные типы         */
 
 /* Типы индексов (keyof) */
@@ -50,6 +49,32 @@ type MyPartial<T> = { [P in keyof T]?: T[P] };
 
 /* Условные типы */
 type Swapper = <T extends number | string>(val: T) => T extends number ? string : number;
+
+// Пример 1:
+interface User {
+  id: string;
+}
+interface Message {
+  id: number;
+}
+function getId<T extends { id: any }>(obj: T): T extends { id: string } ? string : number {
+  return obj.id;
+}
+let id_of_type_string = getId({} as User);
+let id_of_type_number = getId({ id: 322 } as Message);
+
+// Пример 2:
+// Тип Filter аналог Exclude
+type Filter<T, U> = T extends U ? never : T;
+let f: Filter<"a" | "b" | "c", "b">;
+
+// Пример 3 (Infer):
+// Тип FunctionResult аналог ReturnType
+const fn = () => {
+  return 5;
+};
+type FunctionResult<T extends (...args: any) => any,> = T extends (...args: any) => infer R ? R : any; // infer - Разпознает тип возвращаемого функцией значения
+type fn_result_number = FunctionResult<typeof fn>;
 
 /* Условные связанные типы */
 interface User {

@@ -64,3 +64,10 @@ console.log(`Значение переменной 'value' состоит из $
 let someVal: unknown;
 (someVal as number[]).length = 3;
 if (typeof someVal === "function") someVal();
+
+// as const - Конструкция, которая позволяет сделать объект иммутабельным
+// Свойства объекта становятся readonly:
+const user1 = {
+  name: 'John',
+  role: 'admin'
+} as const;
