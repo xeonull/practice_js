@@ -34,6 +34,7 @@ const strictResult = concat([1, 2] as const, ["3", "4"] as const);
 const relaxedResult = concat([1, 2], ["3", "4"]);
 // type -> Array<string | number>
 
+
 /*         Индексные, связанные (mapped) и условные типы         */
 
 /* Типы индексов (keyof) */
@@ -50,6 +51,14 @@ const formData = {
 };
 declare function validate<T>(form: T): { [key in keyof T]: boolean };
 const validResult = validate(formData)
+
+// Пример с получением типов полей объекта:
+const KeyToVal = {
+  MyKey1: 'myValue1',
+  MyKey2: Symbol(),
+};
+type Keys = keyof typeof KeyToVal;
+type KeyTypes = typeof KeyToVal[Keys];
 
 /* Связанные типы (mapped types) */
 type Stringify<T> = { [P in keyof T]: string };
