@@ -42,6 +42,15 @@ let pointProps: keyof APoint = "x";
 
 declare function getProp<T, K extends keyof T>(val: T, propKey: K): T[K];
 
+// Пример с валидацией формы:
+const formData = {
+  firstName: "John",
+  lastName: "Doe",
+  age: 45,
+};
+declare function validate<T>(form: T): { [key in keyof T]: boolean };
+const validResult = validate(formData)
+
 /* Связанные типы (mapped types) */
 type Stringify<T> = { [P in keyof T]: string };
 
@@ -73,7 +82,7 @@ let f: Filter<"a" | "b" | "c", "b">;
 const fn = () => {
   return 5;
 };
-type FunctionResult<T extends (...args: any) => any,> = T extends (...args: any) => infer R ? R : any; // infer - Разпознает тип возвращаемого функцией значения
+type FunctionResult<T extends (...args: any) => any> = T extends (...args: any) => infer R ? R : any; // infer - Разпознает тип возвращаемого функцией значения
 type fn_result_number = FunctionResult<typeof fn>;
 
 /* Условные связанные типы */
