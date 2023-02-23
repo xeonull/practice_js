@@ -120,3 +120,6 @@ declare namespace GreetingLib {
     color?: string;
   }
 }
+
+// Шаблонные строковые типы 
+type V = `v${string}` // множество всех строк, которые начинаются с v
