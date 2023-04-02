@@ -1,5 +1,5 @@
 function isBalanced(string) {
-  const opened = "({[<";bn
+  const opened = "({[<";
   const closed = ")}]>";
 
   const stack = [];
