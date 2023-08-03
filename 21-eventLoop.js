@@ -35,7 +35,7 @@ setTimeout(() => {
   // for (let index = 0; index < 1000; index++) {
   //   setImmediate(() => console.log("set immediate " + index.toString() + " inside set timeout "));
   // }
-  process.nextTick(() => console.log("next tick !!!"))
+  process.nextTick(() => console.log("next tick !!!"));
   Promise.resolve().then(() => console.log("promise !!!"));
 }, 0);
 

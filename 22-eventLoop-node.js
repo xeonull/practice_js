@@ -4,6 +4,7 @@ function compute() {
     n++;
   }
   setImmediate(compute, 0);
+  console.log(`setImmediate: ${n}`)
 }
 
 compute();
